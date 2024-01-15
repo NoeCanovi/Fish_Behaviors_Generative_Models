@@ -22,9 +22,7 @@ class GVADModel(nn.Module):
 
     def loss(self, g_y, g_target):
 
-        
         g_dist = (g_y - g_target).pow(2)
-    
         g_loss = g_dist.mean(dim=1)
         
         return g_loss
@@ -42,23 +40,9 @@ class FiLM(nn.Module):
   """
   def forward(self, x, gammas, betas):
       
-    #gammas = gammas.unsqueeze(2).unsqueeze(3).expand_as(x)
-    #gammas = gammas.unsqueeze(2).expand_as(x)
-    #betas = betas.unsqueeze(2).expand_as(x)
-    
-    #print("gammas", gammas.size())
-    #print("betas", betas.size())
-    #print("x", x.size())
-    #gammas = gammas.unsqueeze(1).expand_as(x)
-    #betas = betas.unsqueeze(1).expand_as(x)
     gammas = gammas.unsqueeze(1)
     betas = betas.unsqueeze(1)
 
-    
-    #print("gammas", gammas.size())
-    #print("gammas*x", (gammas*x).size())
-    
-    
     return (gammas * x) + betas
     
 class FiLM1(nn.Module):
@@ -68,23 +52,10 @@ class FiLM1(nn.Module):
   """
   def forward(self, x, gammas, betas):
       
-    #gammas = gammas.unsqueeze(2).unsqueeze(3).expand_as(x)
-    #gammas = gammas.unsqueeze(2).expand_as(x)
-    #betas = betas.unsqueeze(2).expand_as(x)
-    
-    #print("gammas", gammas.size())
-    #print("betas", betas.size())
-    #print("x", x.size())
-    #gammas = gammas.unsqueeze(1).expand_as(x)
-    #betas = betas.unsqueeze(1).expand_as(x)
     gammas = gammas.unsqueeze(1)
     betas = betas.unsqueeze(1)
     x = x.unsqueeze(1)
-    
-    #print("gammas", gammas.size())
-    #print("gammas*x", (gammas*x).size())
-    
-    
+
     return (gammas * x) + betas
 
 
@@ -113,7 +84,7 @@ class FourierFeatures_aot(nn.Module):
 
 
 
-'''   AutoEncoder Model   '''
+'''   Model   '''
 
 # imports
 from typing import List
@@ -248,19 +219,11 @@ class FeatureDenoiserModel(nn.Module):
 
     # decoder function
     def decoder(self, x: torch.Tensor) -> torch.Tensor:
-        
-
         x = self.decoder_fc(x)
-        
         x = self.dec_bn(x.view([-1, 128, 3]))
-        
-
         self.unpool2 = torch.nn.MaxUnpool1d(2)
         x = self.unpool2(x, self.i2)
-        
         x = self.dec_block2(x)
-        
-
         self.unpool1 = torch.nn.MaxUnpool1d(2)
         x = self.unpool1(x, self.i1, output_size = [13])
         x = self.dec_block1(x)
@@ -278,10 +241,8 @@ class FeatureDenoiserModel(nn.Module):
         x = self.enc_in(x, enc_t[0], enc_t[1])
         latent_code = self.encoder(x)
         
-        #print("after enc", x.size())
         z = self.dec_in(latent_code, dec_t[0], dec_t[1])
         
-        #print("after decin", z.size())
         z = self.decoder(z)
       
         return z
