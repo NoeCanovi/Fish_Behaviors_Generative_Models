@@ -1,1 +1,1 @@
-from .feature_v1 import GVADModel
+from .denoiser_model import GVADModel
