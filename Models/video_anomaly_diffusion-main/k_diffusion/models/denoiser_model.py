@@ -21,7 +21,7 @@ class GVADModel(nn.Module):
 
 
     def loss(self, g_y, g_target):
-
+        
         g_dist = (g_y - g_target).pow(2)
         g_loss = g_dist.mean(dim=1)
         
@@ -30,7 +30,6 @@ class GVADModel(nn.Module):
     def forward(self, x_noised, sigma, cond=None):
         x_hat = self.ae(x_noised, sigma)
         return x_hat
-
 
 
 class FiLM(nn.Module):
@@ -239,9 +238,9 @@ class FeatureDenoiserModel(nn.Module):
         dec_t = self.dec_tembed(utils.append_dims(c_noise, 2))
         
         x = self.enc_in(x, enc_t[0], enc_t[1])
-        latent_code = self.encoder(x)
+        hidden = self.encoder(x)
         
-        z = self.dec_in(latent_code, dec_t[0], dec_t[1])
+        z = self.dec_in(hidden, dec_t[0], dec_t[1])
         
         z = self.decoder(z)
       
@@ -250,8 +249,11 @@ class FeatureDenoiserModel(nn.Module):
         
     def loss(self, g_y, g_target):
         
+ 
         g_dist = (g_y - g_target).pow(2)
         g_loss = g_dist.mean(dim=1)
         return g_loss
+
+
 
 
