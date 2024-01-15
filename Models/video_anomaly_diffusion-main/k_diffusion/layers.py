@@ -57,8 +57,10 @@ class Denoiser(nn.Module):
 
     def forward(self, input, sigma, **kwargs):
         c_skip, c_out, c_in = [utils.append_dims(x, input.ndim) for x in self.get_scalings(sigma)]
-        x_hat, latent = self.gvad_model(input * c_in, sigma, **kwargs)
-        return x_hat * c_out + input * c_skip, latent
+        x_hat = self.gvad_model(input * c_in, sigma, **kwargs)
+        return x_hat * c_out + input * c_skip
+        #x_hat, latent = self.gvad_model(input * c_in, sigma, **kwargs)
+        #return x_hat * c_out + input * c_skip, latent
     
     def forward1(self, input, sigma, **kwargs):
         c_skip, c_out, c_in = [utils.append_dims(x, input.ndim) for x in self.get_scalings(sigma)]
