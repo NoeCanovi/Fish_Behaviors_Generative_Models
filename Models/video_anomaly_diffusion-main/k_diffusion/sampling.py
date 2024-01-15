@@ -183,10 +183,11 @@ def sample_lms(model, x, sigmas, extra_args=None, callback=None, disable=None, o
     s_in = x.new_ones([x.shape[0]])
     sigmas_cpu = sigmas.detach().cpu().numpy()
     ds = []
-    latent_codes = []
+    #latent_codes = []
     for i in trange(len(sigmas) - 1, disable=disable):
-        denoised, latent = model(x, sigmas[i] * s_in, **extra_args)
-        latent_codes.append(latent)
+        #denoised, latent = model(x, sigmas[i] * s_in, **extra_args)
+        denoised = model(x, sigmas[i] * s_in, **extra_args)
+        #latent_codes.append(latent)
         d = to_d(x, sigmas[i], denoised)
         ds.append(d)
         if len(ds) > order:
@@ -196,9 +197,9 @@ def sample_lms(model, x, sigmas, extra_args=None, callback=None, disable=None, o
         cur_order = min(i + 1, order)
         coeffs = [linear_multistep_coeff(cur_order, sigmas_cpu, i, j) for j in range(cur_order)]
         x = x + sum(coeff * d for coeff, d in zip(coeffs, reversed(ds)))
-    
-    return x, latent_codes
-
+        
+    #return x, latent_codes
+    return x
 
 @torch.no_grad()
 def log_likelihood(model, x, sigma_min, sigma_max, extra_args=None, atol=1e-4, rtol=1e-4):
