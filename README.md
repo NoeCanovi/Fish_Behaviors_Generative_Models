@@ -1,5 +1,15 @@
 # The code and dataset for the paper: Trajectory-based fish event classification through pre-training with diffusion models
 
+## Highlights
+- **Enhancing Fish Event Recognition:** We enhance the field of automatic fish event recognition in natural underwater videos, addressing the current gap in understanding fish interaction and competition, including predator-prey relationships and behaviors during mating seasons, particularly for male corkwing wrasse.
+
+- **Novel Deep Learning Approach:** Our study makes a pioneering contribution to ecological informatics by introducing a novel deep learning approach to analyzing fish trajectories for behavior classification. This method utilizes unsupervised pre-training based on diffusion models to enhance feature learning.
+
+- **Introducing a New Dataset:** We introduce a dataset of 16,937 trajectories across 12 event classes, benchmarked with several methods, confirming the superior performance of the proposed approach.
+
+![Alt text](image-url)
+
+
 ## Project Structure
 
 - **Data_cleaning Folder:** Contains the processes performed on the original datasets, not on the individual trajectories, whose lengths are fixed.
