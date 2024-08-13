@@ -7,7 +7,7 @@
 
 - **Introducing a New Dataset:** We introduce a dataset of 16,937 trajectories across 12 event classes, benchmarked with several methods, confirming the superior performance of the proposed approach.
 
-![Alt text](image-url)
+![GraphicalAbstract](https://github.com/NoeCanovi/Fish_Behaviors_Generative_Models/main/diagram.png)
 
 
 ## Project Structure
