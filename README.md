@@ -12,6 +12,7 @@
 
 ### If you use the code and/or the dataset, please cite:
 
+```bibtex
 @article{CANOVI2024102733,
   title        = {Trajectory-based fish event classification through pre-training with diffusion models},
   author       = {Noemi Canovi and Benjamin A. Ellis and Tonje K. Sørdalen and Vaneeda Allken and Kim T. Halvorsen and Ketil Malde and Cigdem Beyan},
