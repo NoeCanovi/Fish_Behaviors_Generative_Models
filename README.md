@@ -1,9 +1,24 @@
-# Classifying Fish Behaviors through Trajectory-Based Generative Model Pretraining
+# The code and dataset for the paper: Trajectory-based fish event classification through pre-training with diffusion models
 
-This repository includes the code used in a master thesis regarding classifying Corwing Wrasse's behaviors with Autoencoder and Diffusion Model pretraining, plus a MLP for classification.
+## Project Structure
 
-Data_cleaning folder includes the processes done on the original datasets.
+- **Data_cleaning Folder:** Contains the processes performed on the original datasets, not on the individual trajectories, whose lengths are fixed.
+- **Models Folder:** Includes the `Autoencoder` and `Diffusion Model` Jupyter Notebook files.
+  - The `Autoencoder` should work independently.
+  - The `Diffusion Model` requires files from the `video_anomaly_diffusion-main` folder, which is a slightly modified version of [video_anomaly_diffusion](https://github.com/AnilOsmanTur/video_anomaly_diffusion).
 
-Models folder include Autoencoder and Diffusion Model ipynb files. Autoencoder should work on its own. Diffusion Model requires files from video_anomaly_diffusion-main folder, a slightly modified version of [video_anomaly_diffusion](https://github.com/AnilOsmanTur/video_anomaly_diffusion/tree/main).
+**Note:** Paths need to be updated, as well as `wandb` project and entity names.
 
-Note: paths need to be changed, as well as wandb project and entity names
+
+### If you use the code and/or the dataset, please cite:
+
+@article{CANOVI2024102733,
+  title        = {Trajectory-based fish event classification through pre-training with diffusion models},
+  author       = {Noemi Canovi and Benjamin A. Ellis and Tonje K. Sørdalen and Vaneeda Allken and Kim T. Halvorsen and Ketil Malde and Cigdem Beyan},
+  journal      = {Ecological Informatics},
+  volume       = {82},
+  pages        = {102733},
+  year         = {2024},
+  doi          = {10.1016/j.ecoinf.2024.102733},
+  url          = {https://www.sciencedirect.com/science/article/pii/S1574954124002759},
+}
